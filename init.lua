@@ -1,2 +1,2 @@
-require "ryan.vim_options" -- import ryan vimoptions
+require "ryan.options" -- import ryan vimoptions
 
