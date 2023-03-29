@@ -11,3 +11,6 @@ vim.opt.relativenumber = true
 
 vim.opt.wrap = false
 
+-- TODO: Look into vimscript commands I want to update
+-- TODO: Look into more classical vim options I want to change 
+
