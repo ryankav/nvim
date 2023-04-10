@@ -1,5 +1,5 @@
-require "ryan.options" -- import ryan vimoptions
-require "ryan.keymaps" -- import ryan keymappings 
-require "ryan.plugins" -- import plugins 
-require "ryan.colorscheme" -- import colorscheme file
+require "core.plugin_manager" -- import plugins 
+require "core.options" -- import vimoptions
+require "core.keymaps" -- import keymappings 
+-- require "core.colorscheme" -- import colorscheme file
 
