@@ -8,8 +8,7 @@ local M = {
     "hrsh7th/cmp-nvim-lsp-signature-help"
   },
   config = function()
-    local cmp = require("cmp")
-    mapping = require("lua.core.keymaps.plugins.cmp").mappings(cmp)
+    mapping = require("core.keymaps.plugins.cmp")
   end
 }
 
