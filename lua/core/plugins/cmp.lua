@@ -1,3 +1,7 @@
+-- Need to have a snippet engine to display the completions. Inside keymaps
+-- there is snippet engine specific commands so will need to be updated if
+-- LuaSnip isn't used as snippet engine in the future
+
 local M = {
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -5,10 +9,46 @@ local M = {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-nvim-lsp-signature-help"
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+    "L3MON4D3/LuaSnip"
   },
   config = function()
-    mapping = require("core.keymaps.plugins.cmp")
+    local cmp = require("cmp")
+    local luasnip = require("luasnip")
+
+    cmp.setup({
+      formatting = require("core.apperance.plugins.cmp"),
+      mapping = require("core.keymaps.plugins.cmp"),
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
+      },
+      sources = {
+        { name = "nvim-lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
+      }
+    })
+
+    -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+    cmp.setup.cmdline("/", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = "buffer" },
+      },
+    })
+
+    -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = "path" },
+      }, {
+        { name = "cmdline" },
+      }),
+    })
   end
 }
 
