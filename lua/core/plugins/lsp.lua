@@ -5,7 +5,7 @@ local M = {
     "williamboman/mason-lspconfig.nvim",
   },
   config = function()
-    require("core.lsp.lua")
+    require("core.lsp").setup()
   end,
 }
 
