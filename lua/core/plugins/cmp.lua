@@ -11,27 +11,30 @@ local M = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lsp-signature-help",
     "hrsh7th/cmp-nvim-lua",
-    "L3MON4D3/LuaSnip"
+    "L3MON4D3/LuaSnip",
+    "saadparwaiz1/cmp_luasnip"
   },
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
 
     cmp.setup({
-      formatting = require("core.apperance.plugins.cmp"),
-      mapping = require("core.keymaps.plugins.cmp"),
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
+      formatting = require("core.apperance.plugins.cmp"),
+      mapping = require("core.keymaps.plugins.cmp"),
       sources = {
-        { name = "nvim-lsp" },
+        { name = "nvim_lsp" },
         { name = "nvim_lsp_signature_help" },
         { name = "nvim_lua" },
         { name = "luasnip" },
         { name = "path" },
         { name = "buffer" },
+      }, {
+        { name = "buffer" }
       }
     })
 
