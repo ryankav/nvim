@@ -1,10 +1,11 @@
 local M = {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "hrsh7th/nvim-cmp"
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
   },
   config = function()
-    require("core.lsp")
+    require("core.lsp.lua")
   end,
 }
 

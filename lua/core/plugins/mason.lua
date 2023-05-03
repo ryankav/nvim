@@ -6,8 +6,8 @@ local M ={
   },
   config = function()
     require("mason").setup()
-    require("mason-lspconfig").setup({})
-  end
+    require("mason-lspconfig").setup({ ensure_installed = { "lua_ls" }})
+  end,
 }
 
 return M
