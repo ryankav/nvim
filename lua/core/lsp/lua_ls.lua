@@ -1,5 +1,5 @@
 local M = {
-  server = { "lua_ls" },
+  server = "lua_ls",
   setup = function()
     local lspconfig = require("lspconfig")
 
