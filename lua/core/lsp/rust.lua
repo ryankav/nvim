@@ -19,9 +19,8 @@ local lspconfig = require("lspconfig")
 -- I do not believe we need to return anything for the plugin manager in order
 -- to setup the lsp but this is worth investigating further in the future
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- enable autoclompletion via nvim-cmp
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
