@@ -17,6 +17,7 @@ end
 
 -- Require all the desired lsp files below
 insert_lsp_config(require("core.lsp.lua_ls"))
+insert_lsp_config(require("core.lsp.rust"))
 
 local M = {
   servers = servers,

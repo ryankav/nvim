@@ -10,6 +10,7 @@ local M = {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lsp-signature-help",
+    "hrsh7th/cmp-nvim-lua",
     "L3MON4D3/LuaSnip"
   },
   config = function()
@@ -26,9 +27,11 @@ local M = {
       },
       sources = {
         { name = "nvim-lsp" },
+        { name = "nvim_lsp_signature_help" },
+        { name = "nvim_lua" },
         { name = "luasnip" },
-        { name = "buffer" },
         { name = "path" },
+        { name = "buffer" },
       }
     })
 
