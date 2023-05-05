@@ -4,7 +4,8 @@
 -- the actual setup, so that the colorscheme works correctly in the editor
 
 local M = {
-  'morhetz/gruvbox',
+  'rose-pine/neovim',
+  name = 'rose-pine',
   config = function()
     require("core.apperance.colorscheme")
   end
