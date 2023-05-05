@@ -1,11 +1,16 @@
 local M = {
   "neovim/nvim-lspconfig",
   dependencies = {
+    -- Run after the language server installer is setup from mason.lua
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    -- Run after the completion plugin is setup in cmp.lua
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lsp-signature-help",
+    -- add null-ls for linter support. Requires plenary
+    "jose-elias-alvarez/null-ls.nvim",
+    "nvim-lua/plenary.nvim"
   },
   config = function()
     local signs = {

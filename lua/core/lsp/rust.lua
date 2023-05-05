@@ -22,6 +22,12 @@ local M = {
           procMacro = {
             enable = true,
           },
+          diagnostics = {
+            enable = true,
+            experimental = {
+              enable = true
+            }
+          }
         },
       }
     }
