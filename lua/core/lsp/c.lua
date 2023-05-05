@@ -1,8 +1,9 @@
 local M = {
-  server = "clangd",
+  servers = { "clangd" },
   setup = function()
     require'lspconfig'.clangd.setup{}
-  end
+  end,
+  null_ls_sources = {}
 }
 
 return M

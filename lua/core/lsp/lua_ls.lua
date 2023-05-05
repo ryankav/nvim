@@ -1,5 +1,5 @@
 local M = {
-  server = "lua_ls",
+  servers = { "lua_ls" },
   setup = function()
     local lspconfig = require("lspconfig")
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -24,7 +24,8 @@ local M = {
         },
       },
     }
-  end
+  end,
+  null_ls_sources = {}
 }
 
 return M

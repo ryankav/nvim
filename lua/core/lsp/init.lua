@@ -6,12 +6,14 @@
 -- module.
 local servers = {}
 local setup_fns = {}
-
 -- add the modules server name used by mason-lspconfig to ensure the server is
 -- installed and also adds the setup function to the list which will be called
 -- by nvim-lspconfig once it is ready to be configured
 local insert_lsp_config = function(mod)
-  table.insert(servers, mod.server)
+  for _, server in pairs(mod.servers) do
+    table.insert(servers, server)
+  end
+
   table.insert(setup_fns, mod.setup)
 end
 
@@ -26,7 +28,7 @@ local M = {
     for _, fn in pairs(setup_fns) do
       fn()
     end
-  end
+  end,
 }
 
 return M

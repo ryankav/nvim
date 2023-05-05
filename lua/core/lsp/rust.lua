@@ -1,5 +1,7 @@
+-- Create a null_ls function so that the require call only occurs after the
+-- plugin has been installed
 local M = {
-  server = "rust_analyzer",
+  servers = { "rust_analyzer" },
   setup = function()
     local lspconfig = require("lspconfig")
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -31,7 +33,7 @@ local M = {
         },
       }
     }
-  end
+  end,
 }
 
 return M
