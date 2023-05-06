@@ -16,18 +16,12 @@ local M = {
         "toml"
       },
       sync_install = false,
-      ignore_install = { "" },
       autopairs = {
         enable = true
       },
       highlight = {
         enable = true,
-        disable = { "" },
         additional_vim_regex_highlighting = false,
-      },
-      indent = {
-        enable = true,
-        disable = { "" }
       },
     }
   end,

@@ -10,7 +10,7 @@ local M = {
     "hrsh7th/cmp-nvim-lsp-signature-help",
     -- add null-ls for linter support. Requires plenary
     "jose-elias-alvarez/null-ls.nvim",
-    "nvim-lua/plenary.nvim"
+    "nvim-lua/plenary.nvim",
   },
   config = function()
     local signs = {
@@ -31,9 +31,20 @@ local M = {
       },
       update_in_insert = true,
       underline = true,
+      float = {
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = ""
+      }
     }
 
     vim.diagnostic.config(diagnostic_config)
+
+    vim.cmd([[
+      set signcolumn=yes
+      autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+    ]])
 
     -- setup the actual language servers
     require("core.lsp").setup()

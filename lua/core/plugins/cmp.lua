@@ -19,6 +19,9 @@ local M = {
     local luasnip = require("luasnip")
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
+    -- Show cmp even if only one match
+    vim.opt.completeopt = { "menuone" }
+
     cmp.setup({
       snippet = {
         expand = function(args)
@@ -28,7 +31,7 @@ local M = {
       formatting = require("core.apperance.plugins.cmp"),
       mapping = require("core.keymaps.plugins.cmp"),
       sources = {
-        { name = "nvim_lsp" },
+        { name = "nvim_lsp", keyword_length = 3 },
         { name = "nvim_lsp_signature_help" },
         { name = "buffer" },
       }
