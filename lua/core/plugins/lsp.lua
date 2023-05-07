@@ -11,6 +11,8 @@ local M = {
     -- add null-ls for linter support. Requires plenary
     "jose-elias-alvarez/null-ls.nvim",
     "nvim-lua/plenary.nvim",
+    -- wait till after telescope so keybindings work
+    "nvim-telescope/telescope.nvim",
   },
   config = function()
     local signs = {
