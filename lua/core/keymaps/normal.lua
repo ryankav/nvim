@@ -6,6 +6,12 @@ local opts_with_desc = function(desc)
   return { noremap = true, silent = true,  desc = desc}
 end
 
+-- experimental mappings within normal mode
+vim.keymap.set("n", "<leader>w", ":w<CR>", opts_with_desc("Faster save"))
+vim.keymap.set("n", "<leader><leader>", "<C-^>", opts_with_desc("Toggle to last seen buffer"))
+vim.keymap.set("n", "H", "^", opts_with_desc("Jump to start of line"))
+vim.keymap.set("n", "L", "$", opts_with_desc("Jump to end of line"))
+
 -- Open file tree
 vim.keymap.set("n", "<leader>ft", vim.cmd.Ex, opts_with_desc("Open file tree"))
 
