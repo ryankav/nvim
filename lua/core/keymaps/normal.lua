@@ -2,22 +2,25 @@
 
 -- This command just means that the command on the RHS isn"t expanded to new
 -- mappings that I have defiend before
-local opts = { noremap = true, silent = true }
+local opts_with_desc = function(desc)
+  return { noremap = true, silent = true,  desc = desc}
+end
 
-vim.keymap.set("n", "<leader>ft", vim.cmd.Ex, { desc = "Open file tree"})
+-- Open file tree
+vim.keymap.set("n", "<leader>ft", vim.cmd.Ex, opts_with_desc("Open file tree"))
 
 -- Panel navigation
-vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
-vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
-vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
-vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts_with_desc("Move left in pannels"))
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts_with_desc("Move down in pannels"))
+vim.keymap.set("n", "<C-k>", "<C-w>k", opts_with_desc("Move up in pannels"))
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts_with_desc("Move right in pannels"))
 
 -- Global lsp related keymappings
-vim.keymap.set("n", "<leader>ll", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>ll", vim.diagnostic.open_float, opts_with_desc("Open linter message"))
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center cursor after page jump"})
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Center cursor after page jump"})
-vim.keymap.set("n", "n", "nzz", { desc = "Center cursor search"})
-vim.keymap.set("n", "N", "Nzz", { desc = "Center cursor search"})
-
+-- Cursor centering after jump commands
+vim.keymap.set("n", "<C-d>", "<C-d>zz", opts_with_desc("Page down and center"))
+vim.keymap.set("n", "<C-u>", "<C-u>zz", opts_with_desc("Page up and center"))
+vim.keymap.set("n", "n", "nzz", opts_with_desc("Next and center"))
+vim.keymap.set("n", "N", "Nzz", opts_with_desc("Next and center"))
 
