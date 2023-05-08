@@ -17,6 +17,8 @@ local M = {
     "windwp/nvim-autopairs",
     -- completion pictorgrams
     "onsails/lspkind.nvim",
+    -- wait on color scheme
+    "rose-pine/neovim",
   },
   config = function()
     local cmp = require("cmp")

@@ -4,8 +4,8 @@
 -- the actual setup, so that the colorscheme works correctly in the editor
 
 local M = {
-  'rose-pine/neovim',
-  name = 'rose-pine',
+  "rose-pine/neovim",
+  name = "rose-pine",
   config = function()
     require("core.apperance.colorscheme")
   end
