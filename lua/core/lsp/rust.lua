@@ -6,8 +6,10 @@ local M = {
     local lspconfig = require("lspconfig")
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local on_attach = function(_, buf)
-      print("Rust on attach called")
       require('core.keymaps.plugins.lsp').on_attach(buf)
+
+      -- enable auto format on save as supported by rust_analyzer
+      vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
     end
 
     lspconfig.rust_analyzer.setup {

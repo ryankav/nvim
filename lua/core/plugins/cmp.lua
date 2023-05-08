@@ -10,9 +10,13 @@ local M = {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lsp-signature-help",
+    -- snippet engine for cmp to work
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
+    -- autopairs to close pairs
     "windwp/nvim-autopairs",
+    -- completion pictorgrams
+    "onsails/lspkind.nvim",
   },
   config = function()
     local cmp = require("cmp")
@@ -28,7 +32,14 @@ local M = {
           luasnip.lsp_expand(args.body)
         end,
       },
-      formatting = require("core.apperance.plugins.cmp"),
+      view = {
+        entries = {
+          name = "custom",
+          selection_order = "near_cursor",
+        }
+      },
+      formatting = require("core.apperance.plugins.cmp").format(),
+      window = require("core.apperance.plugins.cmp").window(),
       mapping = require("core.keymaps.plugins.cmp"),
       sources = {
         { name = "nvim_lsp", keyword_length = 3 },
