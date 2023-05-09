@@ -30,3 +30,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", opts_with_desc("Page up and center"))
 vim.keymap.set("n", "n", "nzz", opts_with_desc("Next and center"))
 vim.keymap.set("n", "N", "Nzz", opts_with_desc("Next and center"))
 
+-- buffer specific mappings
+vim.keymap.set('n', '<leader>bd', "<cmd>bdelete", opts_with_desc("Delete current buffer, fails if edit"))
+vim.keymap.set('n', '<leader>bD', "<cmd>bwipeout", opts_with_desc("Wipeout current buffer, deletes no matter what"))
+
