@@ -31,6 +31,10 @@ vim.keymap.set("n", "n", "nzz", opts_with_desc("Next and center"))
 vim.keymap.set("n", "N", "Nzz", opts_with_desc("Next and center"))
 
 -- buffer specific mappings
-vim.keymap.set('n', '<leader>bd', "<cmd>bdelete", opts_with_desc("Delete current buffer, fails if edit"))
-vim.keymap.set('n', '<leader>bD', "<cmd>bwipeout", opts_with_desc("Wipeout current buffer, deletes no matter what"))
+vim.keymap.set('n', '<leader>bd', "<cmd>bdelete<CR>", opts_with_desc("Delete current buffer, fails if edit"))
+vim.keymap.set('n', '<leader>bD', "<cmd>bwipeout<CR>", opts_with_desc("Wipeout current buffer, deletes no matter what"))
+
+-- Quick fix specific keybindings
+vim.keymap.set('n', '<leader>qn', "<cmd>cnext<CR>", opts_with_desc("Go to next quick fix"))
+vim.keymap.set('n', '<leader>qN', "<cmd>cprevious<CR>", opts_with_desc("Go to previous quick fix"))
 

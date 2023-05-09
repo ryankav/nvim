@@ -1,5 +1,11 @@
 -- Create a null_ls function so that the require call only occurs after the
 -- plugin has been installed
+--
+-- TODO: Issue relating to inlay hints in neovim:
+--   https://github.com/neovim/neovim/issues/18086
+--   doubt I'll want full file inlay hints but on hover or on line might be
+--   nice
+
 local M = {
   servers = { "rust_analyzer" },
   setup = function()
