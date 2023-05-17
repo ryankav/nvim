@@ -10,9 +10,10 @@ local function buffer_keymaps(bufnr)
       return { noremap = true, silent = true, buffer = bufnr, desc = desc}
     end
     -- goto commands
-    vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>zz", opts_with_desc("Get lsp definitions"))
-    vim.keymap.set("n", "gD", "<cmd>Telescope lsp_declaration<CR>zz", opts_with_desc("Get lsp declarations"))
-    vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>zz", opts_with_desc("Get lsp implementations"))
+    vim.keymap.set("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>zz", opts_with_desc("Get lsp definitions"))
+    vim.keymap.set("n", "<leader>gD", "<cmd>Telescope lsp_declaration<CR>zz", opts_with_desc("Get lsp declarations"))
+    vim.keymap.set("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>zz", opts_with_desc("Get lsp implementations"))
+    vim.keymap.set("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>zz", opts_with_desc("Get lsp implementations"))
     -- linter commands
     vim.keymap.set("n", "<leader>ln", "<cmd>lua vim.diagnostic.goto_next({border = 'rounded'})<CR>zz", opts_with_desc("Goto next linter error"))
     vim.keymap.set("n", "<leader>lN", "<cmd>lua vim.diagnostic.goto_prev({border = 'rounded'})<CR>zz", opts_with_desc("Goto prev linter error"))
