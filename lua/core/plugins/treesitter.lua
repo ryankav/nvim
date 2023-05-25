@@ -13,9 +13,13 @@ local M = {
         "vimdoc",
         "query",
         "rust",
-        "toml"
+        "toml",
+        "javascript",
+        "typescript",
+        "tsx"
       },
       sync_install = false,
+      ignore_install = {},
       autopairs = {
         enable = true
       },

@@ -8,7 +8,8 @@
 
 local M = {
   servers = { "rust_analyzer" },
-  setup = function()
+  tools = {},
+  setup_lsp = function()
     local lspconfig = require("lspconfig")
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local on_attach = function(_, buf)
@@ -31,6 +32,7 @@ local M = {
           },
           cargo = {
             allFeatures = true,
+            loadOutDirsFromCheck = true,
             buildScripts = {
               enable = true,
             },
@@ -51,6 +53,9 @@ local M = {
       }
     }
   end,
+  setup_null_ls_sources = function(null_ls)
+    return {}
+  end
 }
 
 return M

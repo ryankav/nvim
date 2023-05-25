@@ -1,6 +1,7 @@
 local M = {
   servers = { "clangd" },
-  setup = function()
+  tools = {},
+  setup_lsp = function()
     local on_attach = function(_, buf)
       require('core.keymaps.plugins.lsp').on_attach(buf)
     end
@@ -9,7 +10,9 @@ local M = {
       on_attach = on_attach
     }
   end,
-  null_ls_sources = {}
+  setup_null_ls_sources = function(null_ls)
+    return {}
+  end
 }
 
 return M

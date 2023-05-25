@@ -8,9 +8,6 @@ local M = {
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lsp-signature-help",
-    -- add null-ls for linter support. Requires plenary
-    "jose-elias-alvarez/null-ls.nvim",
-    "nvim-lua/plenary.nvim",
     -- wait till after telescope so keybindings work
     "nvim-telescope/telescope.nvim",
   },
@@ -49,7 +46,7 @@ local M = {
     ]])
 
     -- setup the actual language servers
-    require("core.lsp").setup()
+    require("core.lsp").setup_lsp()
   end,
 }
 
