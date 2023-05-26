@@ -2,7 +2,7 @@
 local M = {
   servers = { "tsserver" },
   tools = { "prettier", "eslint_d" },
-  setup = function()
+  setup_lsp = function()
     local lspconfig = require("lspconfig")
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local on_attach = function(_, buf)
