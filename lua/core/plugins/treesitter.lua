@@ -14,12 +14,10 @@ local M = {
         "query",
         "rust",
         "toml",
-        "javascript",
         "typescript",
         "tsx"
       },
       sync_install = false,
-      ignore_install = {},
       autopairs = {
         enable = true
       },
