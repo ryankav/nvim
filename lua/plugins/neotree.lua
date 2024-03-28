@@ -1,4 +1,4 @@
-local M = {
+return {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -12,5 +12,3 @@ local M = {
       require("neo-tree").setup()
     end,
 }
-
-return M

@@ -1,4 +1,4 @@
-local M = {
+return {
   "rose-pine/neovim",
   name = "default-colourscheme",
   lazy = false,
@@ -10,5 +10,3 @@ local M = {
     vim.cmd([[colorscheme rose-pine]])
   end
 }
-
-return M
