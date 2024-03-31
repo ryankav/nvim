@@ -12,8 +12,8 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 -- Remap space as leader key this must be done before requiring lazy
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+require("config.keymaps")
+require("config.options")
 
 -- Require lazy and point the setup to the plugins directory whilst also
 -- providing the desired config overrides for lazy
