@@ -1,12 +1,20 @@
 return {
-  "neovim/nvim-lspconfig",
-  -- Add the dependencies here so that later on in the lang modules
-  -- the ordering of plugins is preserved
-  dependencies = {
-    "mason.nvim",
+  {
     "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      "mason.nvim",
+    },
+    opts = {
+      -- This will be populated by the langs modules to ensure the required lsp server is installed
+      ensure_installed = {},
+    },
   },
-  opts = {},
-  -- servers will be populated by each language module
-  servers = {},
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "mason.nvim",
+      "mason-lspconfig.nvim",
+    },
+    event = { "BufReadPre", "BufNewFile" },
+  },
 }

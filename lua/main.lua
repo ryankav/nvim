@@ -17,7 +17,11 @@ require("config.options")
 
 -- Require lazy and point the setup to the plugins directory whilst also
 -- providing the desired config overrides for lazy
-require("lazy").setup("plugins", {
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+    { import = "plugins.langs" },
+  },
   defaults = {
     lazy = true,
     version = false
