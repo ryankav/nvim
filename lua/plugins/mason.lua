@@ -1,40 +1,49 @@
+-- This file sets up Mason to manage the tools needed for development work.
+-- Outside of mason itself and mason-lspconfig the remaining packages are
+-- less frequently used and potentially more of a gamble
 return {
-  "williamboman/mason.nvim",
-  cmd = "Mason",
-  build = ":MasonUpdate",
-  config = function(_, opts)
-    require("mason").setup()
-  end
-  -- TODO: Commenting out following lines in favour of looking into installing
-  -- the tools in a more reasonable manor
-
-  -- opts = {
-  --   ensure_installed = {},
-  -- },
-  -- config = function(_, opts)
-  --   require("mason").setup(opts)
-  --   local mr = require("mason-registry")
-  --   mr:on("package:install:success", function()
-  --     vim.defer_fn(function()
-  --       -- trigger FileType event to possibly load this newly installed LSP server
-  --       require("lazy.core.handler.event").trigger({
-  --         event = "FileType",
-  --         buf = vim.api.nvim_get_current_buf(),
-  --       })
-  --     end, 100)
-  --   end)
-  --   local function ensure_installed()
-  --     for _, tool in ipairs(opts.ensure_installed) do
-  --       local p = mr.get_package(tool)
-  --       if not p:is_installed() then
-  --         p:install()
-  --       end
-  --     end
-  --   end
-  --   if mr.refresh then
-  --     mr.refresh(ensure_installed)
-  --   else
-  --     ensure_installed()
-  --   end
-  -- end,
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    build = ":MasonUpdate",
+    lazy = false,
+    config = function(_, opts)
+      require("mason").setup()
+    end
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      "mason.nvim",
+    },
+    opts = {
+      -- LSP servers to install that will be populated in langs module
+      ensure_installed = {},
+    },
+  },
+  {
+    "rshkarin/mason-nvim-lint",
+    event = "BufReadPost",
+    dependencies = {
+      "mason.nvim",
+      "nvim-lint",
+    },
+    opts = {
+      -- Linters to install that will be populated in langs module
+      ensure_installed = {},
+      -- Prevent default linters within nvim-lint from being installed
+      automatic_installation = false,
+    },
+  },
+  {
+    "zapling/mason-conform.nvim",
+    dependencies = {
+      "mason.nvim",
+      "conform.nvim",
+    },
+    opts = {
+      -- Formatters to install that will be populated in langs module
+      ensure_installed = {},
+    },
+  },
 }

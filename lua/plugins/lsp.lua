@@ -1,20 +1,11 @@
 return {
-  {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = {
-      "mason.nvim",
-    },
-    opts = {
-      -- This will be populated by the langs modules to ensure the required lsp server is installed
-      ensure_installed = {},
-    },
+  "neovim/nvim-lspconfig",
+  dependencies = {
+    "mason.nvim",
+    "mason-lspconfig.nvim",
   },
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      "mason.nvim",
-      "mason-lspconfig.nvim",
-    },
-    event = { "BufReadPre", "BufNewFile" },
-  },
+  event = { "BufReadPre", "BufNewFile" },
+  config = function(_, opts)
+    require("lspconfig").lua_ls.setup({})
+  end
 }
