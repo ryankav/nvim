@@ -1,23 +1,26 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "lua", "luadoc", "luap" })
-    end,
+    opts = {
+      ensure_installed = { "lua", "luadoc", "luap" },
+    },
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "lua_ls" })
-    end,
+    opts = {
+      ensure_installed = { "lua_ls" },
+    },
   },
   {
     "rshkarin/mason-nvim-lint",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "selene" })
-    end,
+    opts = {
+      ensure_installed = { "selene" },
+    },
   },
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      lua = { "selene" },
+    },
+  }
 }
