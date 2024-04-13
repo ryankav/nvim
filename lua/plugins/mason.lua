@@ -31,12 +31,11 @@ return {
     opts = {
       -- Linters to install that will be populated in langs module
       ensure_installed = {},
-      -- Prevent default linters within nvim-lint from being installed
-      automatic_installation = false,
     },
   },
   {
     "zapling/mason-conform.nvim",
+    event = "BufWritePre",
     dependencies = {
       "mason.nvim",
       "conform.nvim",

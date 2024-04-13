@@ -5,12 +5,12 @@ return {
   -- opts will be populated by lang module to be the linters by filetype
   opts = {},
   config = function(_, opts)
-    require('lint').linters_by_ft = opts
+    require("lint").linters_by_ft = opts
 
     vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave", "TextChanged" }, {
       callback = function()
         require("lint").try_lint()
       end,
     })
-  end
+  end,
 }
