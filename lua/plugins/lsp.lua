@@ -3,6 +3,7 @@ return {
   dependencies = {
     "mason.nvim",
     "mason-lspconfig.nvim",
+    "hrsh7th/cmp-nvim-lsp",
   },
   event = { "BufReadPre", "BufNewFile" },
   -- opts will be a map of the lsp server to setup and it's config
@@ -40,8 +41,11 @@ return {
     })
 
     local lspconfig = require("lspconfig")
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
     for server, server_opts in pairs(opts) do
+      server_opts.capailities = capabilities
       lspconfig[server].setup(server_opts)
     end
   end,

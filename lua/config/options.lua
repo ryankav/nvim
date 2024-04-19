@@ -1,5 +1,6 @@
 local opt = vim.opt
 
+opt.completeopt = "menu,menuone,noselect"
 opt.expandtab = true
 opt.number = true
 opt.relativenumber = true

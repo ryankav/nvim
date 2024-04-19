@@ -33,5 +33,28 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      local keybindings = require("config.keymaps")
+      require("nvim-treesitter.configs").setup({
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = keybindings.treesitter.select,
+          },
+          move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = keybindings.treesitter.move.goto_next_start,
+            goto_next_end = keybindings.treesitter.move.goto_next_end,
+            goto_previous_start = keybindings.treesitter.move.goto_previous_start,
+            goto_previous_end = keybindings.treesitter.move.goto_previous_end,
+            goto_next = keybindings.treesitter.move.goto_next,
+            goto_previous = keybindings.treesitter.move.goto_previous,
+          },
+        },
+      })
+    end,
   },
 }

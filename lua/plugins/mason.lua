@@ -1,6 +1,8 @@
 -- This file sets up Mason to manage the tools needed for development work.
 -- Outside of mason itself and mason-lspconfig the remaining packages are
--- less frequently used and potentially more of a gamble
+-- less frequently used and potentially more of a gamble. Events have to
+-- be specified for the mason-conform & mason-nvim-lint plugins as they
+-- have to be required after conform & nvim-lint.
 return {
   {
     "williamboman/mason.nvim",
@@ -9,7 +11,7 @@ return {
     lazy = false,
     config = function(_, _)
       require("mason").setup()
-    end
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",

@@ -47,6 +47,8 @@ M.treesitter = {
     ["if"] = "@function.inner",
     ["ac"] = "@class.outer",
     ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+    ["ab"] = "@block.outer",
+    ["ib"] = "@block.inner",
     ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
   },
   -- Keybindings for selection with treesitter text objects
@@ -55,22 +57,22 @@ M.treesitter = {
       ["]f"] = "@function.outer",
       ["]c"] = { query = "@class.outer", desc = "Next class start" },
       ["]o"] = "@loop.*",
-      ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+      ["]b"] = "@block.outer",
     },
     goto_next_end = {
       ["]F"] = "@function.outer",
       ["]C"] = "@class.outer",
-      ["]S"] = { query = "@scope", query_group = "locals", desc = "End of scope" },
+      ["]B"] = "@block.outer",
     },
     goto_previous_start = {
       ["[f"] = "@function.outer",
       ["[c"] = "@class.outer",
-      ["[s"] = { query = "@scope", query_group = "locals", desc = "Start of last scope" },
+      ["[b"] = "@block.outer",
     },
     goto_previous_end = {
       ["[F"] = "@function.outer",
       ["[C"] = "@class.outer",
-      ["[S"] = { query = "@scope", query_group = "locals", desc = "End of last scope" },
+      ["[B"] = "@block.outer",
     },
     goto_next = {
       ["]t"] = "@conditional.outer",

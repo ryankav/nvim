@@ -3,87 +3,97 @@ return {
   version = false,
   event = "InsertEnter",
   dependencies = {
+    {
+      "L3MON4D3/LuaSnip",
+      build = "make install_jsregexp",
+    },
+    "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
   },
-  -- Not all LSP servers add brackets when completing a function.
-  -- To better deal with this, LazyVim adds a custom option to cmp,
-  -- that you can configure. For example:
-  --
-  -- ```lua
-  -- opts = {
-  --   auto_brackets = { "python" }
-  -- }
-  -- ```
-
-  opts = function()
+  config = function(_, _)
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
     local cmp = require("cmp")
     local defaults = require("cmp.config.default")()
-    return {
-      auto_brackets = {}, -- configure any filetype to auto add brackets
-      completion = {
-        completeopt = "menu,menuone,noinsert",
+    local luasnip = require("luasnip")
+    luasnip.config.setup({
+      history = true,
+      delete_check_events = "TextChanged",
+    })
+
+    local has_words_before = function()
+      unpack = unpack or table.unpack
+      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    end
+
+    cmp.setup({
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
       },
+      window = {},
       mapping = cmp.mapping.preset.insert({
-        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-a>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<S-CR>"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<C-CR>"] = function(fallback)
-          cmp.abort()
-          fallback()
-        end,
+        ["<CR>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            if luasnip.expandable() then
+              luasnip.expand()
+            else
+              cmp.confirm({ select = true })
+            end
+          else
+            fallback()
+          end
+        end),
+        -- Combination of https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+        -- and https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#confirm-candidate-on-tab-immediately-when-theres-only-one-completion-entry
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            if #cmp.get_entries() == 1 then
+              cmp.confirm({ select = true })
+            else
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+            end
+          elseif luasnip.locally_jumpable(1) then
+            luasnip.jump(1)
+          elseif has_words_before() then
+            cmp.complete()
+            if #cmp.get_entries() == 1 then
+              cmp.confirm({ select = true })
+            end
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+          elseif luasnip.locally_jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
+        { name = "luasnip" },
         { name = "path" },
       }, {
         { name = "buffer" },
       }),
-      formatting = {
-        --format = function(_, item)
-        --  local icons = require("lazyvim.config").icons.kinds
-        --  if icons[item.kind] then
-        --    item.kind = icons[item.kind] .. item.kind
-        --  end
-        --  return item
-        --end,
-      },
       experimental = {
         ghost_text = {
           hl_group = "CmpGhostText",
         },
       },
       sorting = defaults.sorting,
-    }
-  end,
-  ---@param opts cmp.ConfigSchema | {auto_brackets?: string[]}
-  config = function(_, opts)
-    for _, source in ipairs(opts.sources) do
-      source.group_index = source.group_index or 1
-    end
-    local cmp = require("cmp")
-    local Kind = cmp.lsp.CompletionItemKind
-    cmp.setup(opts)
-    cmp.event:on("confirm_done", function(event)
-      if not vim.tbl_contains(opts.auto_brackets or {}, vim.bo.filetype) then
-        return
-      end
-      local entry = event.entry
-      local item = entry:get_completion_item()
-      if vim.tbl_contains({ Kind.Function, Kind.Method }, item.kind) then
-        local keys = vim.api.nvim_replace_termcodes("()<left>", false, false, true)
-        vim.api.nvim_feedkeys(keys, "i", true)
-      end
-    end)
+    })
   end,
 }
