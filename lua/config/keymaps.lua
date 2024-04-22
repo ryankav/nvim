@@ -33,6 +33,19 @@ local diagnostic_goto = function(next, severity)
   end
 end
 
+vim.keymap.set(
+  "n",
+  "<leader>bd",
+  "<cmd>bdelete<CR>",
+  { noremap = true, silent = true, desc = "Delete current buffer, fails if edit" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>bD",
+  "<cmd>bwipeout!<CR>",
+  { noremap = true, silent = true, desc = "Wipeout current buffer, deletes no matter what" }
+)
+
 vim.keymap.set("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 vim.keymap.set("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
 vim.keymap.set("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
