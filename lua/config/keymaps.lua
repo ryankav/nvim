@@ -88,10 +88,10 @@ M.treesitter = {
       ["[B"] = "@block.outer",
     },
     goto_next = {
-      ["]t"] = "@conditional.outer",
+      ["]j"] = "@conditional.outer",
     },
     goto_previous = {
-      ["[t"] = "@conditional.outer",
+      ["[j"] = "@conditional.outer",
     },
   },
 }
