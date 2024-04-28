@@ -18,10 +18,6 @@ return {
     dependencies = {
       "mason.nvim",
     },
-    opts = {
-      -- LSP servers to install that will be populated in langs module
-      ensure_installed = {},
-    },
   },
   {
     "rshkarin/mason-nvim-lint",
@@ -41,10 +37,6 @@ return {
     dependencies = {
       "mason.nvim",
       "conform.nvim",
-    },
-    opts = {
-      -- Formatters to install that will be populated in langs module
-      ensure_installed = {},
     },
   },
 }

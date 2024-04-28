@@ -12,7 +12,7 @@ return {
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
-      ensure_installed = {},
+      ensure_installed = { "query", "c" },
       incremental_selection = {},
     },
     config = function(_, opts)
