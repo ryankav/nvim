@@ -1,8 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = { "diff", "vim", "vimdoc" },
-    },
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "diff", "vim", "vimdoc" })
+    end,
   },
 }

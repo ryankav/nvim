@@ -1,15 +1,15 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = { "lua", "luadoc", "luap" },
-    },
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "lua", "luadoc", "luap" })
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = { "lua_ls" },
-    },
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "lua_ls" })
+    end,
   },
   {
     "neovim/nvim-lspconfig",

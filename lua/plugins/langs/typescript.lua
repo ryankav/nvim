@@ -1,15 +1,15 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = { "typescript", "tsx" },
-    },
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = { "tsserver" },
-    },
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "tsserver" })
+    end,
   },
   {
     "neovim/nvim-lspconfig",
