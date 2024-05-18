@@ -47,4 +47,12 @@ return {
       ensure_installed = {},
     },
   },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = {
+      "mason.nvim",
+      "nvim-dap",
+    },
+    opts = {},
+  },
 }
