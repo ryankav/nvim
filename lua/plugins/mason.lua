@@ -9,7 +9,7 @@ return {
     cmd = "Mason",
     build = ":MasonUpdate",
     lazy = false,
-    config = function(_, _)
+    config = function()
       require("mason").setup()
     end,
   },

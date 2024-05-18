@@ -11,6 +11,7 @@ return {
       vim.list_extend(opts.ensure_installed, { "tsserver" })
     end,
   },
+  -- TODO: look into the tsserver specific nvim plugin https://github.com/pmizio/typescript-tools.nvim
   {
     "neovim/nvim-lspconfig",
     opts = {
