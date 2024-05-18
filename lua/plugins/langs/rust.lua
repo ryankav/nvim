@@ -2,7 +2,6 @@
 -- the analyzer used matches the toolchain being used so has to be installed on
 -- the host.
 -- TODO: add a check on required host tools to decide if part of config
--- TODO: add crate integration
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -49,6 +48,14 @@ return {
     },
     config = function(_, opts)
       vim.g.rustaceanvim = opts
+    end,
+  },
+  -- TODO: add crate integration for cmp
+  {
+    "saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    config = function()
+      require("crates").setup()
     end,
   },
 }
