@@ -1,8 +1,6 @@
 return {
   "mfussenegger/nvim-dap",
-
   dependencies = {
-
     -- fancy UI for the debugger
     {
       "rcarriga/nvim-dap-ui",
@@ -60,15 +58,15 @@ return {
   },
 
   config = function()
-    --local Config = require("lazyvim.config")
-    --vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
+    vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
-    --for name, sign in pairs(Config.icons.dap) do
-    --  sign = type(sign) == "table" and sign or { sign }
-    --  vim.fn.sign_define(
-    --    "Dap" .. name,
-    --    { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
-    --  )
-    --end
+    vim.fn.sign_define(
+      "DapStopped",
+      { text = "󰁕 ", texthl = "DiagnosticWarn", linehl = "DapStoppedLine", numhl = "DapStoppedLine" }
+    )
+    vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "DiagnosticInfo" })
+    vim.fn.sign_define("DapBreakpointCondition", { text = " ", texthl = "DiagnosticInfo" })
+    vim.fn.sign_define("DapBreakpointRejected", { text = " ", texthl = "DiagnosticError" })
+    vim.fn.sign_define("DapLogPoint", { text = ".>", texthl = "DiagnosticInfo" })
   end,
 }
