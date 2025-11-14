@@ -1,5 +1,5 @@
--- go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
+  desc = "Record last location within a file on close and go there on open",
   group = vim.api.nvim_create_augroup("last_loc", { clear = true }),
   callback = function(event)
     local exclude = { "gitcommit" }
@@ -13,5 +13,13 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     if mark[1] > 0 and mark[1] <= lcount then
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
+  end,
+})
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking text",
+  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
   end,
 })

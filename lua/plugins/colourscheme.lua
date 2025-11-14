@@ -1,7 +1,6 @@
 return {
   "rose-pine/neovim",
-  name = "default-colourscheme",
-  lazy = false,
+  name = "rose-pine",
   priority = 1000,
   opts = {
     disable_italics = true,

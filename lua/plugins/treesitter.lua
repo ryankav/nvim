@@ -3,58 +3,41 @@ return {
     "nvim-treesitter/nvim-treesitter",
     version = false,
     build = ":TSUpdate",
+    main = "nvim-treesitter.configs", -- Sets main module to use for opts
     event = { "BufReadPost", "BufNewFile" },
-    init = function(plugin)
-      require("lazy.core.loader").add_to_rtp(plugin)
-      require("nvim-treesitter.query_predicates")
-    end,
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts = {
-      highlight = { enable = true },
-      indent = { enable = true },
-      ensure_installed = { "query", "c" },
-      incremental_selection = {},
+      ensure_installed = {
+        "bash",
+        "c",
+        "diff",
+        "html",
+        "lua",
+        "luadoc",
+        "markdown",
+        "markdown_inline",
+        "query",
+        "vim",
+        "vimdoc",
+      },
+      auto_install = true,
+      highlight = {
+        enable = true,
+      },
     },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
   },
   {
-    "nvim-treesitter/nvim-treesitter-context",
+    "aaronik/treewalker.nvim",
     event = { "BufReadPost", "BufNewFile" },
-    enabled = true,
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
+    keys = {
+      { "<C-k>", "<cmd>Treewalker Up<cr>", mode = { "n", "v" }, desc = "Move up in the treesiter AST" },
+      { "<C-j>", "<cmd>Treewalker Down<cr>", mode = { "n", "v" }, desc = "Move down in the treesiter AST" },
+      { "<C-h>", "<cmd>Treewalker Left<cr>", mode = { "n", "v" }, desc = "Move left in the treesiter AST" },
+      { "<C-l>", "<cmd>Treewalker Right<cr>", mode = { "n", "v" }, desc = "Move right in the treesiter AST" },
     },
-    opts = { mode = "cursor", max_lines = 3 },
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
+    opts = {
+      highlight = true,
+      highlight_duration = 250,
+      highlight_group = "CursorLine",
     },
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      local keybindings = require("config.keymaps")
-      require("nvim-treesitter.configs").setup({
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true,
-            keymaps = keybindings.treesitter.select,
-          },
-          move = {
-            enable = true,
-            set_jumps = true,
-            goto_next_start = keybindings.treesitter.move.goto_next_start,
-            goto_next_end = keybindings.treesitter.move.goto_next_end,
-            goto_previous_start = keybindings.treesitter.move.goto_previous_start,
-            goto_previous_end = keybindings.treesitter.move.goto_previous_end,
-            goto_next = keybindings.treesitter.move.goto_next,
-            goto_previous = keybindings.treesitter.move.goto_previous,
-          },
-        },
-      })
-    end,
   },
 }

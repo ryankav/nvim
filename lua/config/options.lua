@@ -1,17 +1,28 @@
-local opt = vim.opt
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.mouse = "a"
+-- If add statusline then enable this option there
+-- vim.opt.showmode = false
 
-opt.completeopt = "menu,menuone,noselect"
-opt.expandtab = true
-opt.number = true
-opt.relativenumber = true
-opt.wrap = false
-opt.signcolumn = "yes"
-opt.autowrite = true
-opt.cursorline = true
-opt.mouse = "a"
-opt.termguicolors = true
-opt.undofile = true
-opt.scrolloff = 4
-opt.smartindent = true
-opt.shiftwidth = 2
-opt.tabstop = 2
+-- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+vim.schedule(function()
+  vim.opt.clipboard = "unnamedplus"
+end)
+
+vim.opt.breakindent = true
+vim.opt.undofile = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.signcolumn = "yes"
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.inccommand = "split"
+vim.opt.cursorline = true
+vim.opt.scrolloff = 4
